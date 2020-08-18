@@ -65,11 +65,18 @@ def _calc_mean(movies):
 
 
 def sort_by_avg_score(directors):
-    return sorted(directors.items(), key=lambda k_v: k_v[1][-1], reverse=True)
+    return defaultdict(list, sorted(directors.items(), key=lambda k_v: k_v[1][-1], reverse=True))
 
 
 def print_results(directors):
-    pass
+    counter = 0
+    for director, movies in list(directors.items())[:20]:
+        counter += 1
+        print(f'{str(counter).zfill(2)}. {director:<52} {movies[-1]}')
+        print('-' * 60)
+        for movie in movies[:-1]:
+            print(f'{movie.year}] {movie.title:<50} {movie.score}')
+        print()
 
 
 def main():
@@ -77,7 +84,7 @@ def main():
     directors = get_movies_by_director()
     get_average_scores(directors)
     directors = sort_by_avg_score(directors)
-    print('DONE')
+    print_results(directors)
 
 
 if __name__ == '__main__':
