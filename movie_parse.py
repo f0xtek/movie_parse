@@ -43,7 +43,8 @@ def get_movies_by_director(data=MOVIE_CSV_PATH):
 
             m = Movie(title=movie, year=year, score=score)
             if m.year >= MIN_YEAR:
-                directors[director].append(m)
+                if m not in directors[director]:
+                    directors[director].append(m)
     # We're only interested in directors with at least 4 movies
     # convert the output to a defaultdict again to preserve functionality
     return defaultdict(list, {k: v for k, v in directors.items() if len(v) >= 4})
