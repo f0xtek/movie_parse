@@ -6,7 +6,7 @@ This script downloads a CSV movie data set and parses the results to display the
 
 The results only contain directors that have a minimum of 4 movies, that were released on or after 1960.
 
-```bash
+```
 $ python3 movie_parse.py
 01. Sergio Leone                                         8.5
 ------------------------------------------------------------
